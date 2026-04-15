@@ -1,0 +1,42 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Example 1 -->
+    <bean id="upiPayment" class="org.example.Example1DI.UpiPayment"/>
+
+    <bean id="order" class="org.example.Example1DI.Order">
+        <property name="paymentService" ref="upiPayment"/>
+    </bean>
+
+    <!-- Example 2 -->
+    <bean id="customer" class="org.example.Example2CollectionInjection.Customer">
+        <property name="name" value="Arun"/>
+        <property name="cartItems">
+            <list>
+                <value>Mobile</value>
+                <value>Laptop</value>
+                <value>Headphones</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Example 3 -->
+    <bean id="product" class="org.example.Example3ScopeAndLifecycle.Product"
+          init-method="init" destroy-method="destroy"/>
+
+    <bean id="cartItem" class="org.example.Example3ScopeAndLifecycle.CartItem"/>
+
+    <!-- Example 4 -->
+    <bean id="delivery" class="org.example.Example4InnerBean.Delivery">
+        <property name="deliveryBoy" value="Ravi"/>
+        <property name="warehouse">
+            <bean class="org.example.Example4InnerBean.Warehouse">
+                <property name="location" value="Chennai Hub"/>
+            </bean>
+        </property>
+    </bean>
+
+</beans>
